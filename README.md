@@ -1,8 +1,8 @@
 # GoDDD 
 
-[![Build Status](https://travis-ci.org/marcusolsson/goddd.svg?branch=master)](https://travis-ci.org/marcusolsson/goddd)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/marcusolsson/goddd)
-[![Go Report Card](https://goreportcard.com/badge/github.com/marcusolsson/goddd)](https://goreportcard.com/report/github.com/marcusolsson/goddd)
+[![Build Status](https://travis-ci.org/tongc/goddd.svg?branch=master)](https://travis-ci.org/tongc/goddd)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/tongc/goddd)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tongc/goddd)](https://goreportcard.com/report/github.com/tongc/goddd)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](LICENSE)
 ![stability-unstable](https://img.shields.io/badge/stability-unstable-yellow.svg)
 
@@ -29,7 +29,7 @@ Start the application on port 8080 (or whatever the `PORT` variable is set to).
 go run main.go -inmem
 ```
 
-If you only want to try it out, this is enough. If you are looking for full functionality, you will need to have a [routing service](https://github.com/marcusolsson/pathfinder) running and start the application with `ROUTINGSERVICE_URL` (default: `http://localhost:7878`).
+If you only want to try it out, this is enough. If you are looking for full functionality, you will need to have a [routing service](https://github.com/tongc/pathfinder) running and start the application with `ROUTINGSERVICE_URL` (default: `http://localhost:7878`).
 
 ### Docker
 
@@ -37,14 +37,14 @@ You can also run the application using Docker.
 
 ```
 # Start routing service
-docker run --name some-pathfinder marcusolsson/pathfinder
+docker run --name some-pathfinder tongc/pathfinder
 
 # Start application
 docker run --name some-goddd \
   --link some-pathfinder:pathfinder \
   -p 8080:8080 \
   -e ROUTINGSERVICE_URL=http://pathfinder:8080 \
-  marcusolsson/goddd -inmem
+  tongc/goddd -inmem
 ```
 
 ... or if you're using Docker Compose:
@@ -71,8 +71,8 @@ curl localhost:8080/booking/v1/cargos/ABC123/request_routes
 If you want to fork the repository, follow these step to avoid having to rewrite the import paths.
 
 ```shell
-go get github.com/marcusolsson/goddd
-cd $GOPATH/src/github.com/marcusolsson/goddd
+go get github.com/tongc/goddd
+cd $GOPATH/src/github.com/tongc/goddd
 git remote add fork git://github.com:<yourname>/goddd.git
 
 # commit your changes
@@ -98,11 +98,11 @@ For more information, read [this](http://blog.campoy.cat/2014/03/github-and-go-f
 
 The original application uses a external routing service to demonstrate the use of _bounded contexts_. For those who are interested, I have ported this service as well:
 
-[pathfinder](https://github.com/marcusolsson/pathfinder)
+[pathfinder](https://github.com/tongc/pathfinder)
 
 To accompany this application, there is also an AngularJS-application to demonstrate the intended use-cases.
 
-[dddelivery-angularjs](https://github.com/marcusolsson/dddelivery-angularjs)
+[dddelivery-angularjs](https://github.com/tongc/dddelivery-angularjs)
 
 Also, if you want to learn more about Domain Driven Design, I encourage you to take a look at the [Domain Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) book by Eric Evans.
 

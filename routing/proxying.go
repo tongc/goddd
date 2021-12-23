@@ -11,7 +11,7 @@ import (
 	"github.com/go-kit/kit/endpoint"
 	kithttp "github.com/go-kit/kit/transport/http"
 
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 type proxyService struct {

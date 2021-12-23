@@ -3,7 +3,7 @@ package inspection
 import (
 	"testing"
 
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 type stubEventHandler struct {

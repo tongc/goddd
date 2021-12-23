@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	shipping "github.com/marcusolsson/goddd"
-	"github.com/marcusolsson/goddd/mock"
+	shipping "github.com/tongc/goddd"
+	"github.com/tongc/goddd/mock"
 )
 
 type stubEventHandler struct {

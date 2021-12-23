@@ -1,6 +1,6 @@
 BINARY=goddd
 
-DOCKER_IMAGE_NAME=marcusolsson/goddd
+DOCKER_IMAGE_NAME=tongc/goddd
 
 .DEFAULT_GOAL := help
 

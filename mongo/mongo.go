@@ -4,7 +4,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 type cargoRepository struct {

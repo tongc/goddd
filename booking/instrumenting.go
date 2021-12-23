@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-kit/kit/metrics"
 
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 type instrumentingService struct {

@@ -9,8 +9,8 @@ import (
 	"github.com/go-chi/chi"
 	kitlog "github.com/go-kit/kit/log"
 
-	shipping "github.com/marcusolsson/goddd"
-	"github.com/marcusolsson/goddd/handling"
+	shipping "github.com/tongc/goddd"
+	"github.com/tongc/goddd/handling"
 )
 
 type handlingHandler struct {

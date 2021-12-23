@@ -2,7 +2,7 @@
 package inspection
 
 import (
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 // EventHandler provides means of subscribing to inspection events.

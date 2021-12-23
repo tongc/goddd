@@ -6,11 +6,11 @@ import (
 
 	. "gopkg.in/check.v1"
 
-	shipping "github.com/marcusolsson/goddd"
-	"github.com/marcusolsson/goddd/booking"
-	"github.com/marcusolsson/goddd/handling"
-	"github.com/marcusolsson/goddd/inmem"
-	"github.com/marcusolsson/goddd/inspection"
+	shipping "github.com/tongc/goddd"
+	"github.com/tongc/goddd/booking"
+	"github.com/tongc/goddd/handling"
+	"github.com/tongc/goddd/inmem"
+	"github.com/tongc/goddd/inspection"
 )
 
 func Test(t *testing.T) { TestingT(t) }

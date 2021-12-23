@@ -1,18 +1,21 @@
-goddd:
-    image: marcusolsson/goddd
-    ports:
-        - 8080:8080
-    environment:
-        ROUTINGSERVICE_URL: http://pathfinder:8080
-        MONGODB_URL: mongodb
-    links:
-        - pathfinder
-        - mongodb
+services:
+    goddd:
+        image: tongc/goddd
+        ports:
+            - 8080:8080
+            - 2345:2345
+        environment:
+            ROUTINGSERVICE_URL: http://pathfinder:8080
+            MONGODB_URL: mongodb
+        links:
+            - pathfinder
+            - mongodb
+        command: "--listen=:2345 --headless=true --log=true --log-output=debugger,debuglineerr,gdbwire,lldbout,rpc --accept-multiclient --api-version=2 exec ./goapp"
 
-pathfinder:
-    image: marcusolsson/pathfinder
+    pathfinder:
+        image: tongc/pathfinder
 
-mongodb:
-    image: mongo
-    ports:
-        - 27017:27017
+    mongodb:
+        image: mongo
+        ports:
+            - 27017:27017

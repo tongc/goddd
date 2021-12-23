@@ -1,7 +1,7 @@
 package mock
 
 import (
-	shipping "github.com/marcusolsson/goddd"
+	shipping "github.com/tongc/goddd"
 )
 
 // CargoRepository is a mock cargo repository.
