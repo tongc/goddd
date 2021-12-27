@@ -51,8 +51,7 @@ func main() {
 
 	flag.Parse()
 
-	var logger log.Logger
-	logger = log.NewLogfmtLogger(log.NewSyncWriter(os.Stderr))
+	var logger log.Logger = log.NewLogfmtLogger(log.NewSyncWriter(os.Stderr))
 	logger = log.With(logger, "ts", log.DefaultTimestampUTC)
 
 	// Setup repositories

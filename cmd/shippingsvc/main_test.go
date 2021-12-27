@@ -19,7 +19,34 @@ type S struct{}
 
 var _ = Suite(&S{})
 
+type tongint interface {
+	metha() int
+	MethA() int
+}
+
+type tongtest struct {
+	a int
+	b string
+}
+
+func (t tongtest) MethA() int {
+	return 1
+}
+
+func (t *tongtest) metha() int {
+	return 2
+}
+
 func (s *S) TestCargoFromHongkongToStockholm(chk *C) {
+	xxx := &tongtest{1, "2"}
+	yyy := &tongtest{3, "4"}
+	zzz := tongtest{5, "6"}
+	println("init struct literal", xxx.a, yyy.a, zzz.a)
+
+	var aaa tongint
+	aaa = &tongtest{7, "8"}
+	println("composition over inheritence", aaa.MethA(), aaa.metha())
+
 	var err error
 
 	var (
