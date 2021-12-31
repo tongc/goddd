@@ -37,6 +37,14 @@ func (t *tongtest) metha() int {
 	return 2
 }
 
+func temp(str *string) {
+	*str = "ccc"
+}
+
+func temp2(str string) {
+	str = "ddd"
+}
+
 func (s *S) TestCargoFromHongkongToStockholm(chk *C) {
 	xxx := &tongtest{1, "2"}
 	yyy := &tongtest{3, "4"}
@@ -46,6 +54,20 @@ func (s *S) TestCargoFromHongkongToStockholm(chk *C) {
 	var aaa tongint
 	aaa = &tongtest{7, "8"}
 	println("composition over inheritence", aaa.MethA(), aaa.metha())
+
+	strPointer := new(string)
+	*strPointer = "aaa"
+	println("original", *strPointer)
+	temp(strPointer)
+	println("overwrite with pointer", *strPointer)
+
+	strNoPointer := "bbb"
+	println("original", strNoPointer)
+	temp2(strNoPointer)
+	println("no overwrite with value", strNoPointer)
+
+	temp(&strNoPointer)
+	println("overwrite with reference", strNoPointer)
 
 	var err error
 

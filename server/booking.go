@@ -34,7 +34,7 @@ func (h *bookingHandler) router() chi.Router {
 
 	})
 	r.Get("/locations", h.listLocations)
-
+	r.Get("/locations_2", h.listLocations)
 	r.Method("GET", "/docs", http.StripPrefix("/booking/v1/docs", http.FileServer(http.Dir("booking/docs"))))
 
 	return r

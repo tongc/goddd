@@ -17,7 +17,10 @@
             "mode": "auto",
             "program": "${workspaceFolder}\\cmd\\shippingsvc",
             "args": [
-                "-inmem"
+                "-inmem",
+                "-cpuprofile=cpu.prof",
+                "-memprofile=mem.prof",
+                "-tracefile=trace.prof"
             ]
         },
         {

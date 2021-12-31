@@ -2,16 +2,21 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"os/signal"
+	"runtime"
 	"syscall"
 	"time"
 
 	"github.com/go-kit/kit/log"
+
 	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
+
 	stdprometheus "github.com/prometheus/client_golang/prometheus"
 	"gopkg.in/mgo.v2"
 
@@ -33,7 +38,20 @@ const (
 	defaultDBName            = "dddsample"
 )
 
+var f *os.File
+
 func main() {
+	go func() {
+		fmt.Println(http.ListenAndServe(":6060", nil))
+	}()
+
+	var rtm runtime.MemStats
+	runtime.ReadMemStats(&rtm)
+
+	// Just encode to json and print
+	b, _ := json.Marshal(rtm)
+	fmt.Println(string(b))
+
 	var (
 		addr   = envString("PORT", defaultPort)
 		rsurl  = envString("ROUTINGSERVICE_URL", defaultRoutingServiceURL)
@@ -45,14 +63,53 @@ func main() {
 		mongoDBURL        = flag.String("db.url", dburl, "MongoDB URL")
 		databaseName      = flag.String("db.name", dbname, "MongoDB database name")
 		inmemory          = flag.Bool("inmem", false, "use in-memory repositories")
+		cpuprofile        = flag.String("cpuprofile", "", "write cpu profile to file")
+		memprofile        = flag.String("memprofile", "", "write memory profile to file")
+		tracefile         = flag.String("tracefile", "", "write execution trace to file")
 
 		ctx = context.Background()
 	)
 
 	flag.Parse()
 
+	println(*cpuprofile, *memprofile, *tracefile)
 	var logger log.Logger = log.NewLogfmtLogger(log.NewSyncWriter(os.Stderr))
 	logger = log.With(logger, "ts", log.DefaultTimestampUTC)
+
+	// f3, err3 := os.Create(*tracefile)
+	// if err3 != nil {
+	// 	logger.Log(err3)
+	// }
+	// trace.Start(f3)
+	// defer trace.Stop()
+
+	// if *cpuprofile != "" {
+	// 	f, err := os.Create(*cpuprofile)
+	// 	if err != nil {
+	// 		logger.Log(err)
+	// 	}
+	// 	runtime.SetCPUProfileRate(500)
+	// 	pprof.StartCPUProfile(f)
+	// 	f1, err1 := os.Create(*memprofile)
+	// 	if err1 != nil {
+	// 		logger.Log(err)
+	// 	}
+	// 	pprof.WriteHeapProfile(f1)
+	// 	defer pprof.StopCPUProfile()
+	// }
+
+	// c := make(chan os.Signal, 2)
+	// signal.Notify(c, os.Interrupt, syscall.SIGTERM) // subscribe to system signals
+	// onKill := func(c chan os.Signal) {
+	// 	select {
+	// 	case <-c:
+	// 		defer f.Close()
+	// 		defer pprof.StopCPUProfile()
+	// 		defer os.Exit(0)
+	// 	}
+	// }
+	// // try to handle os interrupt(signal terminated)
+	// go onKill(c)
 
 	// Setup repositories
 	var (
